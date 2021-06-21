@@ -4,10 +4,12 @@ public class Ficha {
 
     private boolean rojo;
     private String forma;
+    private boolean coronado;
 
     public Ficha(boolean rojo){
         this.rojo = rojo;
         forma = dibujarForma();
+        coronado = false;
     }
 
     public String dibujarForma(){
@@ -32,5 +34,13 @@ public class Ficha {
 
     public void setForma(String forma) {
         this.forma = forma;
+    }
+
+    public boolean isCoronado() {
+        return coronado;
+    }
+
+    public void setCoronado(boolean coronado) {
+        this.coronado = coronado;
     }
 }

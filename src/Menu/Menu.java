@@ -1,18 +1,16 @@
 package src.Menu;
 
-import src.Jugadores.Jugador;
-import src.Tablero.Tablero;
+import src.Jugadores.*;
+import src.Tablero.*;
 
 public class Menu {
 
-    private Tablero tablero;
-    private Jugador[] jugadores;
-    private int contJugadores;
+    private TablaJugadores jugadores;
+    private Arbitro arbitro;
 
     public Menu(){
-        tablero = new Tablero();
-        jugadores = new Jugador[5];
-        contJugadores = 0;
+        jugadores = new TablaJugadores();
+        arbitro = new Arbitro(jugadores);
         presentarMenu();
     }
 
@@ -20,15 +18,19 @@ public class Menu {
         do {
             System.out.println("\nBienvenido a Checkers");
             System.out.println("\n1.Ingresar Jugador");
-            System.out.println("\n2.Jugar una Partida");
-            System.out.println("\n0.Salir");
+            System.out.println("2.Jugar una Partida");
+            System.out.println("3.Mostrar Puntuaciones");
+            System.out.println("0.Salir");
             int opcion = ComprobarDatos.getEntero("Ingresa una opcion", false);
             switch (opcion) {
                 case 1:
-                    ingresarJugador();
+                    jugadores.agregarJugador();
                     break;
                 case 2:
-                    tablero.mostrarTablero();
+                    arbitro.iniciarPartida();
+                    break;
+                case 3:
+                    listarPunteos();
                     break;
                 case 0:
                     System.exit(0);
@@ -39,8 +41,12 @@ public class Menu {
         }while (5 == 5);
     }
 
-    public void ingresarJugador(){
-        jugadores[contJugadores] = new Jugador(ComprobarDatos.getTexto("Ingresa el nombre del Jugador"));
-        contJugadores++;
+    public void listarPunteos(){
+        jugadores.ordenarPorVictorias();
+        System.out.println("\nVictorias/Derrotas    Jugador");
+        for (int k = 0; k < jugadores.getJugadoresActivos();k++){
+            System.out.print(k+".    " + jugadores.getJugador(k+1).getVictorias()+"/"+jugadores.getJugador(k+1).getDerrotas()+"  "+jugadores.getJugador(k+1).getNombre()+"\n");
+        }
     }
+
 }

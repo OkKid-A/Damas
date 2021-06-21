@@ -8,8 +8,16 @@ public class Jugador {
 
     public Jugador(String nombre){
         this.nombre = nombre;
-        victorias = 0;
-        derrotas = 0;
+        this.victorias = 0;
+        this.derrotas = 0;
+    }
+
+    public void sumarVictoria(){
+        victorias++;
+    }
+
+    public void sumarDerrota(){
+        derrotas++;
     }
 
     public String getNombre() {

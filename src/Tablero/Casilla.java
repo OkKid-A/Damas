@@ -30,12 +30,17 @@ public class Casilla{
         }
     }
 
+    public void eliminarFicha(){
+        this.ficha = null;
+        tieneFicha = false;
+    }
+
     public void repintar(){
         color = pintarCasilla(negra);
     }
 
     public void asignarFicha(boolean rojo){
-        ficha = new Ficha(rojo);
+        this.ficha = new Ficha(rojo);
         tieneFicha = true;
     }
 
